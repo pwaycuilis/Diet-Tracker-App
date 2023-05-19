@@ -1,0 +1,421 @@
+
+*, *::before, *::after {
+    box-sizing: border-box;
+  }
+  /*
+    2. Remove default margin
+  */
+  * {
+    margin: 0;
+  }
+  /*
+    3. Allow percentage-based heights in the application
+  */
+  html, body {
+    height: 100%;
+  }
+  /*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+  body {
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+  /*
+    6. Improve media defaults
+  */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+  }
+  /*
+    7. Remove built-in form typography styles
+  */
+  input, button, textarea, select {
+    font: inherit;
+  }
+  /*
+    8. Avoid text overflows
+  */
+  p, h1, h2, h3, h4, h5, h6 {
+    overflow-wrap: break-word;
+  }
+  /*
+    9. Create a root stacking context
+  */
+  #root, #__next {
+    isolation: isolate;
+  }
+
+:root {
+  --clr-primary-100: rgb(195, 195, 195);
+  --clr-primary-200: rgb(171, 168, 178);
+  --clr-primary-500: rgb(148, 147, 150);
+  --clr-primary-700: rgb(76, 75, 99);
+
+  --clr-secondary-400: rgb(83, 134, 228);
+
+
+  --clr-alt-200: rgb(172, 173, 188);
+  --clr-alt-300: rgb(155, 158, 206);
+  --clr-alt-500: rgb(102, 101, 221);
+  --clr-alt-700: rgb(71, 59, 240);
+  --clr-alt-900: rgb(0, 5, 0);
+
+
+  /* red/green palette */
+  --clr-third-200: hsl(63, 65%, 84%);
+  --clr-third-300: hsl(80, 49%, 68%);
+  --clr-third-500: hsl(30, 36%, 64%);
+  --clr-third-600: hsl(6, 35%, 53%);
+  --clr-third-800: hsl(20, 30%, 30%);
+
+  --clr-modern-200: hsl(43, 38%, 84%);
+  --clr-modern-400: hsl(355, 49%, 52%);
+  --clr-modern-500: hsl(220, 15%, 58%);
+  --clr-modern-600: hsl(209, 77%, 23%);
+  --clr-modern-700: hsl(60, 3%, 29%);
+  --clr-modern-800: hsl(60, 3%, 17%);
+
+
+  --clr-blue-300: hsl(230, 36%, 67%);
+  /* delft blue */
+  --clr-blue-600: hsl(231, 40%, 32%);
+
+  /* --clr-primary-200: rgb(236, 229, 229);
+  --clr-primary-300: hsla(236, 229, 229); */
+}
+
+body {
+  display: flex;
+
+  flex-direction: column;
+
+  background-color: var(--clr-primary-200);
+}
+
+
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.active {
+  cursor: pointer;
+}
+
+.flex-container {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+button {
+  transition: all 0.2 ease;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+
+}
+
+button:active {
+  transform: scale(0.96);
+  /* background-image: linear-gradient(bottom, rgb(171,27,27) 100%, rgb(212,51,51) 0%); */
+}
+
+
+
+.results-labels {
+  display: flex;
+}
+
+.results-labels>div{
+  width: 25%;
+}
+
+.fdcId__column-header {
+  width: 15%;
+}
+
+
+.search-form {
+  position: relative;
+}
+
+.button-search {
+  position: absolute;
+  top: 0;
+  right: 0;
+  
+  height: 100%;
+  width: 2rem;
+  border: none;
+  border-radius: 2rem;
+  background: none;
+
+}
+
+.search-input {
+  border-radius: 2rem;
+  
+}
+
+
+/* Index page */
+
+.new-meal-button {
+
+  background-color: var(--clr-third-300);
+
+
+  border: none;
+  padding: 0.25rem;
+
+
+
+}
+
+
+.meal-card {
+  display: flex;
+  border: 3px solid black;
+  padding: 1rem;
+  margin: 1rem;
+  /* background-color: rgb(190, 193, 211); */
+  background-color: var(--clr-modern-500);
+}
+
+.meal-card__food-item {
+  color: var(--clr-modern-800);
+}
+
+
+.index__foods-title {
+  border-top: 2px solid black;
+  margin-top: 1rem;
+}
+
+.nutrients-overview__title {
+  border-bottom: 1px solid black;
+}
+
+.index__nutrients-container {
+  margin-top: 1rem;
+}
+
+
+
+.show-meal-button {
+
+  background-color: var(--clr-blue-300);
+  padding: 0.25rem;
+  margin-right: 0.25rem;
+
+}
+
+.delete-button {
+
+  background-color: var(--clr-modern-400);
+
+  padding: 0.25rem;
+}
+
+
+/* searchResults */
+.food-card {
+  /* border-style: solid black; */
+  display: flex;
+  flex-direction: column;
+  border: 3px solid black;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+}
+
+.food-info__main {
+  display: flex;
+  flex-direction: row;
+
+}
+
+.food-info__main>div {
+  width: 25%;
+  border: 1px solid grey;
+}
+
+
+.food-info__fdcId {
+  width: 15%;
+}
+/* .food-info__fdcId {
+  display: hidden;
+} */
+
+.food-info__ingredients > button {
+  margin-left: 0.5rem;
+}
+
+.food-info__nutrients > button {
+  margin-left: 0.5rem;
+}
+
+/* showFoodSearchItem */
+
+.portions-table {
+  margin-left: 3rem;
+}
+
+.portions-header>div:nth-child(1) {
+  width: 50%;
+}
+.portions-header>div:nth-child(2) {
+  width: 15%;
+}
+
+.portions-row>div:nth-child(1) {
+  width: 50%;
+}
+
+.portions-row>div:nth-child(2) {
+  width: 15%;
+}
+
+.nutrient-category__title {
+  font: bold;
+  background-color: var(--clr-modern-500);
+}
+
+.nutrient-table__header>div:nth-child(1) {
+  width: 40%
+}
+.nutrient-table__header>div:nth-child(2) {
+  width: 30%
+}
+.nutrient-table__header>div:nth-child(3) {
+  width: 30%
+}
+
+.nutrient-card {
+  display: flex;
+  /* gap: 2rem; */
+  margin-left: 0.25rem;
+
+}
+
+.nutrient-card__headers {
+  display: flex;
+}
+
+.nutrient-card__headers>div:nth-child(1) {
+  width: 40%;
+}
+.nutrient-card__headers>div:nth-child(2) {
+  width: 30%;
+}
+.nutrient-card__headers>div:nth-child(3) {
+  width: 30%;
+}
+
+.nutrient-card > div {
+  border: 1px solid grey;
+  /* width: 25%; */
+  /* overflow: scroll; */
+}
+
+
+.nutrient-card>div:nth-child(1) {
+  width: 40%;
+}
+.nutrient-card>div:nth-child(2) {
+  width: 30%;
+}
+.nutrient-card>div:nth-child(3) {
+  width: 30%;
+}
+  .collapsible {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    width: 100%;
+    text-align: left;
+  }
+
+  .collapsible-content {
+    display: none;
+    overflow: hidden;
+  }
+
+
+.collapsible-arrow {
+  display: inline;
+  height: 6px;
+  width: 10px;
+  background-image: url("./images/icon-arrow-down.svg");
+  background-repeat: no-repeat;
+  padding: 0.2rem;
+
+}
+
+.collapsible.active > .collapsible-arrow {
+
+  background-image: url("./images/icon-arrow-up.svg");
+}
+
+/* meals/new page */
+.new-meal-form-item {
+  margin: 1rem;
+}
+
+.back-button {
+  text-decoration: none;
+}
+
+
+/* meals/show page */
+
+.meal-info {
+  margin: 1rem;
+  /* text-align: center; */
+  /* border: 1px solid rgb(102, 54, 69); */
+  /* border: 1px solid black; */
+}
+
+.remove-food-button {
+  /* background-color: red; */
+  background-color: var(--clr-modern-400);
+}
+
+.show-meal__foods {
+  margin: 0.5rem;
+  /* text-align: center; */
+}
+
+.nutrient-list-header>div:nth-child(1) {
+  width: 40%;
+}
+
+.nutrient-list-header>div:nth-child(2) {
+  width: 30%;
+}
+.nutrient-list-header>div:nth-child(3) {
+  width: 30%;
+}
+
+
+
+.nutrient-total-row {
+  border: 1px solid black;
+}
+.nutrient-total-row>div:nth-child(1) {
+  width: 40%;
+}
+.nutrient-total-row>div:nth-child(2) {
+  width: 30%;
+}
+.nutrient-total-row>div:nth-child(3) {
+  width: 30%;
+} 

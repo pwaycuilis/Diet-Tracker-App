@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <title>Document</title>
+</head>
+<body>
+    <header>
+
+    <nav>
+        <div class="Home active"><i class="fa fa-home"></i>Home</div>
+    </nav>
+
+    <div class="search-wrapper">
+        <form action="/foods/search" method="POST" class="search-form" role="search">
+            <!-- <img src="../public/images/search-512.webp"> -->
+            <div class="flex-container flex-column">
+                <div>
+                    <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+                    <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search Food...">
+                </div>
+                <!-- <div>
+                    <input type="checkbox" id="searchType" name="searchType" value="Branded">
+                    <span>Include Branded Food</span>
+                </div> -->
+            </div>
+
+        </form>
+    </div>
+    </header>
+
+    <main>
+        <!-- <h1>Food Search & Meal Creator</h1> -->
+        <h1>Meals</h1>
+        <a href="/meals/new">
+            <button class="new-meal-button active">New Meal</button>
+        </a>
+        <% meals.forEach(meal => { %>
+            <div class="meal-card flex-column">
+                <div><%= meal.name %></div>
+
+                <div class="index__food-buttons flex-container">
+                    <a href="/meals/<%= meal.id %>" class>
+                        <button class="show-meal-button active">Meal Page</button>
+                    </a>
+
+                 
+    
+                    <form action="/meals/<%= meal.id %>?_method=DELETE" method="POST">
+                        <button type="submit" class="delete-button active"><i class="fa fa-solid fa-trash"></i> DELETE</button>
+                    </form>
+                </div>
+
+                <div class="index__foods-container">
+                    <div class="index__foods-title">Foods: </div>
+                    <% meal.foods.forEach(food => { %>
+                        <div class="meal-card__food-item">
+                            <%= food.description %> (<%= food.amountInGrams %> g)
+                        </div>
+                    <% }) %>
+                </div>
+
+            <div class="index__nutrients-container">
+                <div class="nutrients-overview__title">Nutrient Overview: </div>
+                <% meal.nutrientTotals.forEach(nutrient => { %>
+                    <% if (nutrient.number == "208" || nutrient.number == "203" || nutrient.number == "204" || nutrient.number == "205") { %>
+                        <div><%= nutrient.name %>: <%= nutrient.amount %><%= nutrient.unitName %></div>
+                    <% } %>
+                <% }) %>
+                </div>
+            </div>
+
+        <% }) %>
+    </main>
+    
+</body>
+</html>

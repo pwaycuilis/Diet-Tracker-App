@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+
+</head>
+<body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+
+    <main>
+        <h1>New Meal Create</h1>
+        <form action="/meals" method="POST">
+            <div class="container">
+                <div class="form-group flexbox-item flex-container flex-column new-meal-form-item">
+                    <label for="name">Name</label>
+                    <input required value="<%= meal.name %>" type="text" name="name" id="name" class="form-control">
+                </div>
+
+                <div class="form-group flex-container flex-column new-meal-form-item">
+                    <label for="description">Description</label>
+                    <textarea name="description" id="description" class="form-control"></textarea>
+                </div>
+                <div class="flexbox-container mt-4 new-meal-form-item">
+                    <button><a href="/" class="back-button">Back</a></button>
+                    <button type="submit">Save</button>
+                </div>
+                
+            </div>
+        </form>
+    </main>
+</body>
+</html>

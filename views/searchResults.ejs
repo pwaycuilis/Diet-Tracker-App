@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script type="module" src="/script.js" defer></script>
+    <title>Document</title>
+</head>
+<body class="search-results">
+    <header>
+        <%- include('partials/header') %>
+        <!-- <nav>
+            <div class="Home active">
+                <a href="/"><i class="fa fa-home"></i>Home</a>
+            </div>
+        </nav>
+    
+        <div class="search-wrapper">
+            <form action="/foods/search" method="POST" class="search-form" role="search">
+                <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+                <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search...">
+            </form>
+        </div> -->
+    </header>
+    
+    <main>
+        <!-- <div class="search-wrapper">
+            <form action="/foods/search" method="POST" class="search-form" role="search">
+                <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+                <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search...">
+            </form>
+        </div> -->
+        <div class="page-info">
+            <h1>Search Results</h1>
+            <div>search: '<%= pageInfo.searchTerm %>'</div>
+            <div>Total Hits: <%= pageInfo.totalHits %></div>
+            <div>Results per page: <%= pageInfo.pageSize %></div>
+            <div>Current Page: <%= pageInfo.currentPage %></div>
+            <div>Total Pages: <%= pageInfo.totalPages %></div>
+        </div>
+
+        <div class="results-labels">
+            <div class="fdcId__column-header">fdcId</div>
+            <div>description</div>
+            <div>brandOwner</div>
+            <div>brandName</div>
+        </div>
+
+        <div class="search-container">
+            <% foods.forEach(food => { %>
+                <div class="food-card">
+                    <div class="food-info__main">
+                        <div class="food-info__fdcId"><%= food.fdcId %></div>
+                        <div class="food-info__description"><%= food.description %></div>
+                        <div class="food-info__brandOwner"><%= food.brandOwner %></div>
+                        <div class="food-info__brandName"><%= food.brandName %></div>
+                    </div>
+
+                    <div class="food-info__category">
+                        <%= food.foodCategory %>
+                    </div>
+
+                    <div class="food-info__buttons">
+                        <button><a href="/foods/show/<%= food.fdcId %>">Food Page</a></button>
+                        <!-- <button>Add To Meal</button> -->
+                        
+                    </div>
+
+                    <div class="food-info__ingredients">
+                        <button type="button" class="collapsible collapsible-button">
+                            Show Ingredients
+                            <img class="collapsible-arrow" id="collapsible-arrow" alt="" data-arrow>
+                        </button>
+
+                        <div class="food-ingredients collapsible-content" data-visible="false">
+                            <div><%= food.ingredients %></div>
+                        </div>
+                    </div>
+
+
+                    <div class="food-info__nutrients">
+                        <button type="button" class="collapsible">
+                            Show Nutrient List
+                            <img class="collapsible-arrow" id="collapsible-arrow" alt="" data-arrow>
+                        </button>
+
+                        <div class="collapsible-content">
+                            Amounts per 100g
+                            <div class="nutrient-card__headers">
+                                <div>Nutrient</div>
+                                <div>Amount</div>
+                                <div>Daily value %</div>
+                            </div>
+                             <% food.foodNutrients.forEach(nutrient => { %>
+                               <% if (nutrient.value > 0)  { %>
+                                    <div class="nutrient-card">
+                                        <div><%= nutrient.nutrientName %></div>
+                                        <div><%= nutrient.value %> <%= nutrient.unitName %></div>
+                                        <div><%= nutrient.percentOfDV %></div>
+                                    </div>
+                                <% } %>
+                        
+                                
+                            <% }) %> 
+                        </div>
+                    </div>
+                      
+                </div>
+            <% }) %>
+        </div>
+        <form action="/foods/search" method="POST">
+            <div>
+                <input type="hidden" name="searchTerm" id="searchTerm" value="<%= pageInfo.query %>">
+                <input type="hidden" name="pageNumber" id="pageNumber" value="<%= pageInfo.currentPage - 1 %>">
+                <% if (pageInfo.currentPage !== 1) { %>
+                    <button type="submit" class="btn btn-danger">Previous</button>
+                <% } %>
+            </div>
+        </form>
+        <form action="/foods/search" method="POST">
+            <div>
+                <input type="hidden" name="searchTerm" id="searchTerm" value="<%= pageInfo.query %>">
+                <input type="hidden" name="pageNumber" id="pageNumber" value="<%= pageInfo.currentPage + 1 %>">
+                <% if (pageInfo.currentPage !== pageInfo.totalPages) { %>
+                    <button type="submit" class="btn btn-primary">Next Page</button>
+                <% } %>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

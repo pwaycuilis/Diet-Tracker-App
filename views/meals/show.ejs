@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <title>Document</title>
+</head>
+<body>
+
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+    <!-- <header>
+        <nav>
+            <div class="Home">
+                <a href="/">Home</a>
+            </div>
+        </nav>
+    
+        <div class="search-wrapper">
+            <form action="/foods/search" method="POST" class="search-form" role="search">
+                <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+                <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search...">
+            </form>
+        </div>
+    </header> -->
+
+    <div class="meal-info">
+        <div class="bordered">
+            <h1><%= meal.name %></h1>
+        </div>
+        <div>
+            <h2><%= meal.description %></h2>
+        </div>
+
+        <a href="/meals/edit/<%= meal.id %>" class="btn btn-info">
+            <button class="edit-button"><i class="fa fa-solid fa-pencil"></i>Edit</button>
+        </a>
+    </div>
+
+    <div class="show-meal__foods">
+        <h3>Foods</h3>
+        <div class="show-meal__foods-list">
+            <% meal.foods.forEach(food => { %>
+                <div class="show-meal__food-item flex-container">
+                    <a href="/meals/<%= meal.id %>/foods/<%= food.id %>"><%= food.description %></a>
+                    <div>(<%= food.amountInGrams %> grams)</div>
+                    <form action="/meals/<%= meal.id %>/removeFood/<%= food.fdcId %>" method="POST" class="d-inline">
+                        <button type="submit" class="remove-food-button"><i class="fa fa-solid fa-trash"></i></button>
+                    </form>
+              
+                </div>
+                
+            <% }) %>
+            
+        </div>
+    </div>
+    
+
+    <div class="show-meal__nutrient-list">
+        <div class="nutrient-list-header flex-container">
+            <div>
+                <form action="/nutrients/sort" method="POST">
+                    <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+                    <input type="hidden" name="sortBy" id="sortBy" value="name">
+                    <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                    <input type="hidden" name="pathName" id="pathName" value="meals/show">
+        
+                    <button type="submit" class="button-sort"><i class="fa fa-solid fa-sort"></i>Name</button>
+                </form>
+            </div>
+            <div>
+                <form action="/nutrients/sort" method="POST">
+                    <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+                    <input type="hidden" name="sortBy" id="sortBy" value="amount">
+                    <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                    <input type="hidden" name="pathName" id="pathName" value="meals/show">
+
+                    <button type="submit" class="button-sort"><i class="fa fa-solid fa-sort"></i>Amount</button>
+                </form>
+            </div>
+            <!-- <div>Daily Value (%)</div> -->
+            <div>
+                <form action="/nutrients/sort" method="POST">
+                    <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+                    <input type="hidden" name="sortBy" id="sortBy" value="percentOfDV">
+                    <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                    <input type="hidden" name="pathName" id="pathName" value="meals/show">
+
+                    <button type="submit" class="button-sort"><i class="fa fa-solid fa-sort"></i>Daily Value(%)</button>
+                </form>
+            </div>
+        </div>
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">General</div>
+            <% meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "General") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Carbohydrates</div>
+            <%  meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Carbohydrates") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Sugars</div>
+            <%  meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Sugars") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Lipids</div>
+            <%  meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Lipids") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Proteins</div>
+            <%  meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Proteins") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Vitamins</div>
+            <%  meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Vitamins") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Minerals</div>
+            <%  meal.nutrientTotals.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Minerals") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %> %</div>
+                </div>
+                <% } %>
+            <% }) %> 
+        </div>
+
+        
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- <link rel="stylesheet" href="../../public/styles.css"> -->
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+    <!-- <link type="text/css" href="styles.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <%- include('../partials/header') %>
+    </header>
+
+    <main>
+        <h1><%= food.description %></h1>
+        <div>
+            <form action="/meals/:mealId" method="POST">
+
+                <label for="mealId">Add to Meal:</label>
+            
+                <select class="form-group" id="mealId" name="mealId">
+                    <option value="0">New Meal</option>
+                    <% meals.forEach(meal => { %>
+                        <option value="<%= meal.id %>"><%= meal.name %></option>
+                    <% }) %>
+            
+                </select>
+                
+                <input type="number" id="amountInGrams" name="amountInGrams" min="1" default-value="100" placeholder="100">
+                <label for="amountInGrams">Grams</label>
+                
+            
+                <input type="hidden" id="foodItem" name="foodItem" value="<%= { food } %>">
+                <input type="hidden" id="fdcId" name="fdcId" value="<%= food.fdcId %>">
+                <button type="submit" class="btn btn-success">Add to Meal</button>
+                <!-- <input type="submit" value="Submit"> -->
+               
+            </form>
+        </div>
+        <div class="portions-table">
+            <div class="portions-header flex-container">
+                <div class="h6">Portions</div>
+                <div class="h6">Grams</div>
+            </div>
+            <% if (portionSizes !== "No portion sizes available") { %>
+    
+                <% portionSizes.forEach(size => { %>
+                    <div class="portions-row flex-container">
+                        <div><%= size.portionDescription %></div>
+                        <div><%= size.gramWeight%></div>
+                    </div>
+    
+                <% }) %>
+            <% } else { %>
+                <div>Portion sizes N/A</div>
+            <% } %>
+        </div>
+        <div class="nutrient-table">
+            <div class="nutrient-table__header flex-container">
+                <div>Nutrient</div>
+                <div>Amount</div>
+
+                    <!-- <form action="/foods/nutrientSort" method="POST">
+                        <input type="hidden" name="nutrients" id="nutrients" value="<%= nutrients %>">
+                        <input type="hidden" name="sortBy" id="sortBy" value="amount">
+                        <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                        <button type="submit" class="btn btn-primary">Amount</button>
+                    </form> -->
+                <div>(%)Daily Value</div>
+            </div>
+                
+            </div>
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">General</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "General") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">Carbohydrates</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "Carbohydrates") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">Sugars</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "Sugars") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">Lipids</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "Lipids") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">Proteins</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "Proteins") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">Vitamins</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "Vitamins") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+
+            <div class="nutrient-category">
+                <div class="nutrient-category__title">Minerals</div>
+                <% nutrients.forEach(nutrient => { %>
+                    <% if (nutrient.nutrientCategory == "Minerals") { %>
+                    <div class="nutrient-card">
+                        <div><%= nutrient.name %></div>
+                        <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                        <div><%= nutrient.percentOfDV %> %</div>
+                    </div>
+                    <% } %>
+                <% }) %> 
+            </div>
+        </div>
+    </main>
+
+</body>
+</html>
