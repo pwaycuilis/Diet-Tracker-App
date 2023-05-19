@@ -11,7 +11,18 @@ const PORT = process.env.PORT || 3000;
 
 // console.log(process.env)
 
-mongoose.connect('mongodb://localhost/Diet-Tracker-App');
+// mongoose.connect('mongodb://localhost/Diet-Tracker-App');
+
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(process.env.MONGO_URI);
+        console.log(`MongoDB Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+        process.exit(1);
+    }
+}
+// mongoose.connect(process.env.MONGO_URI);
 
 
 app.set('view engine', 'ejs')
@@ -29,13 +40,19 @@ app.use('/nutrients', nutrientRouter)
 
 app.use(express.static(__dirname + '/public'));
 
-app.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}.`)
-})
+// app.listen(PORT, () => {
+//     console.log(`Server running on port ${PORT}.`)
+// })
 
 
 
 app.get('/', async (req, res) => {
     const meals = await Meal.find();
     res.render('index', {meals: meals});
+})
+
+connectDB().then(() => {
+    app.listen(PORT, () => {
+        console.log("listening for requests");
+    })
 })

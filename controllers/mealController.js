@@ -209,6 +209,15 @@ async function removeFoodFromMeal (req, res, next) {
 
 }
 
+async function showMealFood (req, res, next) {
+
+    let meal = await Meal.findById(req.params.mealId)
+    let food = meal.foods.find(foodObj => foodObj.id === req.params.foodId)
+
+
+    let direction = "";
+    res.render('meals/showFood', { food: food, meal: meal, direction: direction})
+}
 
 
 
@@ -218,6 +227,7 @@ module.exports = {
     showMeal,
     addFoodToMeal,
     deleteMeal,
-    removeFoodFromMeal
+    removeFoodFromMeal,
+    showMealFood
     
 }

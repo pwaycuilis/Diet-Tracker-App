@@ -4,8 +4,8 @@ const { nutrientCategories }= require('../models/nutrientCategories');
 
 
 async function getData (url) {
-    console.log('in getData');
-    console.log({url});
+    // console.log('in getData');
+    // console.log({url});
     try {
         const response = await fetch(url);
         // response = await fetch(url);

@@ -88,12 +88,12 @@ const nutrientSort = (nutrients, sortBy, dir) => {
     const sorter = sortBy ? sortBy : "number";
     const direction = dir ? dir : "asc";
 
-    console.log('sorter: ' + sorter)
+    // console.log('sorter: ' + sorter)
     // 
     // console.log({nutrients});
 
     if (direction == "desc") {
-        console.log('desc sort')
+        // console.log('desc sort')
         if (sorter == "amount") {
             nutrients.sort((a,b) => (unitConverter(b.amount, b.unitName) > unitConverter(a.amount, a.unitName)) ? 1 : -1)
         } else {
@@ -104,7 +104,7 @@ const nutrientSort = (nutrients, sortBy, dir) => {
         // nutrients.sort((a, b) => (a[sorter] > b[sorter]) ? -1 : 1)
         // nutrients.sort((a, b) => b[sorter] - a[sorter]);
     } else if (direction == "asc") {
-        console.log('asc sort')
+        // console.log('asc sort')
         if (sorter == "amount") {
             nutrients.sort((a,b) => (unitConverter(b.amount, b.unitName) < unitConverter(a.amount, a.unitName)) ? 1 : -1)
         } else {
@@ -116,7 +116,7 @@ const nutrientSort = (nutrients, sortBy, dir) => {
     } else {
         console.log(`${direction} is not a valid direction`);
     }
-    console.log('after sorting');
+    // console.log('after sorting');
     // console.log({nutrients});
 
     return nutrients;

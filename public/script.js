@@ -16,8 +16,3 @@ collapsibles.forEach(collapsible => {
     })
 })
 
-
-function sortNutrients (nutrients) {
-    
-}
-// let nutrients = document.querySelector("")

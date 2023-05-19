@@ -83,6 +83,7 @@
   --clr-blue-300: hsl(230, 36%, 67%);
   /* delft blue */
   --clr-blue-600: hsl(231, 40%, 32%);
+  --clr-blue-700: hsl(203, 90%, 19%);
 
   /* --clr-primary-200: rgb(236, 229, 229);
   --clr-primary-300: hsla(236, 229, 229); */
@@ -101,6 +102,7 @@ body {
 header {
   display: flex;
   justify-content: space-between;
+  margin: 0.5rem;
 }
 
 .active {
@@ -251,9 +253,7 @@ button:active {
 .food-info__fdcId {
   width: 15%;
 }
-/* .food-info__fdcId {
-  display: hidden;
-} */
+
 
 .food-info__ingredients > button {
   margin-left: 0.5rem;
@@ -264,9 +264,17 @@ button:active {
 }
 
 /* showFoodSearchItem */
+.add-to-meal-button {
+  background-color: var(--clr-secondary-400);
+  /* background-color: hsl(190, 64%, 34%); */
+}
 
 .portions-table {
-  margin-left: 3rem;
+  /* margin-left: 3rem; */
+  width: 80%;
+  margin: auto;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .portions-header>div:nth-child(1) {
@@ -274,6 +282,11 @@ button:active {
 }
 .portions-header>div:nth-child(2) {
   width: 15%;
+}
+
+.portions-row {
+  border-top: 1px solid black;
+  margin: auto;
 }
 
 .portions-row>div:nth-child(1) {

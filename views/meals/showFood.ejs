@@ -12,76 +12,63 @@
     <header>
         <%- include('../partials/header') %>
     </header>
-    <!-- <header>
-        <nav>
-            <div class="Home">
-                <a href="/">Home</a>
-            </div>
-        </nav>
-    
-        <div class="search-wrapper">
-            <form action="/foods/search" method="POST" class="search-form" role="search">
-                <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
-                <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search...">
-            </form>
-        </div>
-    </header> -->
-    <button onclick="history.back()">Go Back</button>
-
-    <div>
+    <a href='/meals/<%= meal.id %>'>Back to Meal</a>
+    <!-- <button onclick="history.back()">Go Back</button> -->
+    <main>
         <div>
-            <% if (food.description != null ){ %>
-               <div><%= food.description %></div> 
-            <% } %>
-            
-        </div>
-        <div><%= food.amountInGrams %> grams</div>
-    </div>
-
-    <h5>Nutrient Totals</h5>
-    <div class="nutrient-list-header flex-container">
-        <div>
-            <form action="/nutrients/sort" method="POST">
-                <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
-                <input type="hidden" name="sortBy" id="sortBy" value="name">
-                <input type="hidden" name="direction" id="direction" value="<%= direction %>">
-                <input type="hidden" name="pathName" id="pathName" value="meals/showFood">
-                <input type="hidden" name="foodId" id="foodId" value="<%= food.id %>">
-    
-                <button type="submit" class="button-sort">Name</button>
-            </form>
-        </div>
-        <div>
-            <form action="/nutrients/sort" method="POST">
-                <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
-                <input type="hidden" name="sortBy" id="sortBy" value="amount">
-                <input type="hidden" name="direction" id="direction" value="<%= direction %>">
-                <input type="hidden" name="pathName" id="pathName" value="meals/showFood">
-                <input type="hidden" name="foodId" id="foodId" value="<%= food.id %>">
-
-                <button type="submit" class="button-sort">Amount</button>
-            </form>
-        </div>
-        <!-- <div>Daily Value (%)</div> -->
-        <div>
-            <form action="/nutrients/sort" method="POST">
-                <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
-                <input type="hidden" name="sortBy" id="sortBy" value="percentOfDV">
-                <input type="hidden" name="direction" id="direction" value="<%= direction %>">
-                <input type="hidden" name="pathName" id="pathName" value="meals/showFood">
-                <input type="hidden" name="foodId" id="foodId" value="<%= food.id %>">
+            <h1>
+                <% if (food.description != null ){ %>
+                <div><%= food.description %></div> 
+                <% } %>
                 
-                <button type="submit" class="button-sort">Daily Value(%)</button>
-            </form>
+            </h1>
+            <div><%= food.amountInGrams %> grams</div>
         </div>
-    </div>
-    <% food.foodNutrients.forEach(nutrient => { %>
-        <div class="nutrient-total-row flex-container">
-            <div><%= nutrient.name %></div>
-            <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
-            <div><%= nutrient.percentOfDV %></div>
+
+        <h5>Nutrient Totals</h5>
+        <div class="nutrient-list-header flex-container">
+            <div>
+                <form action="/nutrients/sort" method="POST">
+                    <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+                    <input type="hidden" name="sortBy" id="sortBy" value="name">
+                    <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                    <input type="hidden" name="pathName" id="pathName" value="meals/showFood">
+                    <input type="hidden" name="foodId" id="foodId" value="<%= food.id %>">
+        
+                    <button type="submit" class="button-sort">Name</button>
+                </form>
+            </div>
+            <div>
+                <form action="/nutrients/sort" method="POST">
+                    <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+                    <input type="hidden" name="sortBy" id="sortBy" value="amount">
+                    <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                    <input type="hidden" name="pathName" id="pathName" value="meals/showFood">
+                    <input type="hidden" name="foodId" id="foodId" value="<%= food.id %>">
+
+                    <button type="submit" class="button-sort">Amount</button>
+                </form>
+            </div>
+            <!-- <div>Daily Value (%)</div> -->
+            <div>
+                <form action="/nutrients/sort" method="POST">
+                    <input type="hidden" name="mealId" id="mealId" value="<%= meal.id %>">
+                    <input type="hidden" name="sortBy" id="sortBy" value="percentOfDV">
+                    <input type="hidden" name="direction" id="direction" value="<%= direction %>">
+                    <input type="hidden" name="pathName" id="pathName" value="meals/showFood">
+                    <input type="hidden" name="foodId" id="foodId" value="<%= food.id %>">
+                    
+                    <button type="submit" class="button-sort">Daily Value(%)</button>
+                </form>
+            </div>
         </div>
-    <% }) %>
-    
+        <% food.foodNutrients.forEach(nutrient => { %>
+            <div class="nutrient-total-row flex-container">
+                <div><%= nutrient.name %></div>
+                <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                <div><%= nutrient.percentOfDV %></div>
+            </div>
+        <% }) %>
+    </main>
 </body>
 </html>

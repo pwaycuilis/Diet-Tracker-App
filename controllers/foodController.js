@@ -8,7 +8,7 @@ const { getDailyValues, getNutrientCategoriesMap } = require('../middleware/help
 const { nutrientCategories } = require('../models/nutrientCategories');
 
 
-const generalNumbersList = ''
+
 
 async function getData (url) {
     try {
@@ -131,7 +131,7 @@ async function fetchFoodByFdcIdUnabridged (req, res, next) {
     
     const fdcId = req.params.fdcId;
 
-    console.log({fdcId});
+    // console.log({fdcId});
 
     const amountInGrams = req.body.amountInGrams ? req.body.amountInGrams : 100;
     let fullUrl = `https://api.nal.usda.gov/fdc/v1/food/${fdcId}?api_key=${API_KEY}`;
@@ -159,9 +159,9 @@ async function fetchFoodByFdcIdUnabridged (req, res, next) {
 
     // console.log({nutrientCategoriesMap});
 
-    console.log('data.foodNutrients[1].nutrient.number: ', data.foodNutrients[1].nutrient.number);
+    // console.log('data.foodNutrients[1].nutrient.number: ', data.foodNutrients[1].nutrient.number);
 
-    console.log('typeof data.foodNutr...', typeof data.foodNutrients[1].nutrient.number)
+    // console.log('typeof data.foodNutr...', typeof data.foodNutrients[1].nutrient.number)
     let testMap = nutrientCategoriesMap.get(data.foodNutrients[1].nutrient.number);
     // console.log({testMap});
 
@@ -183,7 +183,7 @@ async function fetchFoodByFdcIdUnabridged (req, res, next) {
     }))
     // req.data = data;
 
-    console.log(' in foodController/fetchFoodByFdcIdnutrients[1]: ', nutrients[1]);
+    // console.log(' in foodController/fetchFoodByFdcIdnutrients[1]: ', nutrients[1]);
 
 
     let portionSizes
@@ -213,7 +213,7 @@ async function fetchFoodByFdcIdAbridged (req, res, next) {
     
     const fdcId = req.params.fdcId;
 
-    console.log({fdcId});
+    // console.log({fdcId});
 
     const amountInGrams = req.body.amountInGrams ? req.body.amountInGrams : 100;
     let abridgedUrl = `https://api.nal.usda.gov/fdc/v1/food/${fdcId}?api_key=${API_KEY}&format=abridged`;
