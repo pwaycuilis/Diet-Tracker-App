@@ -12,26 +12,23 @@
 <body>
     <header>
 
-    <nav>
-        <div class="Home active"><i class="fa fa-home"></i>Home</div>
-    </nav>
+        <%- include('partials/header') %>
+        <!-- <nav>
+            <div class="Home active"><i class="fa fa-home"></i>Home</div>
+        </nav>
 
-    <div class="search-wrapper">
-        <form action="/foods/search" method="POST" class="search-form" role="search">
-            <!-- <img src="../public/images/search-512.webp"> -->
-            <div class="flex-container flex-column">
-                <div>
-                    <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
-                    <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search Food...">
+        <div class="search-wrapper">
+            <form action="/foods/search" method="POST" class="search-form" role="search">
+                <div class="flex-container flex-column">
+                    <div>
+                        <button type="submit" class="button-search"><i class="fa fa-search"></i></button>
+                        <input type="searchTerm" name="searchTerm" id="searchTerm" class="search-input" placeholder="Search Food...">
+                    </div>
+                    
                 </div>
-                <!-- <div>
-                    <input type="checkbox" id="searchType" name="searchType" value="Branded">
-                    <span>Include Branded Food</span>
-                </div> -->
-            </div>
 
-        </form>
-    </div>
+            </form>
+        </div> -->
     </header>
 
     <main>

@@ -46,6 +46,12 @@
     <div class="show-meal__foods">
         <h3>Foods</h3>
         <div class="show-meal__foods-list">
+            <% if (meal.foods.length < 1) { %>
+                <div>No foods added...</div>
+                <div>Search for food in top right to add to meal</div>
+            <% } %>
+
+
             <% meal.foods.forEach(food => { %>
                 <div class="show-meal__food-item flex-container">
                     <a href="/meals/<%= meal.id %>/foods/<%= food.id %>"><%= food.description %></a>
@@ -121,10 +127,10 @@
             <% }) %> 
         </div>
         <div class="nutrient-category">
-            <div class="nutrient-category__title">Sugars</div>
+            <div class="nutrient-category__title sugars-header">Sugars</div>
             <%  meal.nutrientTotals.forEach(nutrient => { %>
                 <% if (nutrient.nutrientCategory == "Sugars") { %>
-                <div class="nutrient-card">
+                <div class="nutrient-card sugars-row">
                     <div><%= nutrient.name %></div>
                     <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
                     <div><%= nutrient.percentOfDV %> %</div>
