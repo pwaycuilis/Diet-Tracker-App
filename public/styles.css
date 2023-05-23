@@ -109,6 +109,9 @@ header {
   background-color: var(--clr-primary-100);
 }
 
+.home > a {
+  text-decoration: none;
+}
 .active {
   cursor: pointer;
 }
@@ -467,8 +470,8 @@ button:active {
     max-width: 80%;
     margin: auto;
   } */
-  main {
+  /* main {
     width: 80%;
     margin: auto;
-  }
+  } */
 }
