@@ -6,17 +6,12 @@ const { db_getMealObject } = require('../middleware/manageDatabase');
 
 function processNutrients (data, amountInGrams) {
 
-    // const nutrientMap = new Map();
-
-    // console.log({data});
-
     const dailyValues = getDailyValues();
 
     let nutrients = data.foodNutrients.map(nutrient => {
         
         const amount = calculateNutrientAmount(nutrient.amount, amountInGrams);
-        // console.log('from processNutrients: ' + typeof amount);
-        // console.log({amount});
+
         const percentOfDV = dailyValues.has(nutrient.number) ? calculatePercentOfDV(amount, dailyValues.get(nutrient.number)) : 'N/A';
         if (percentOfDV !== 'N/A') {
             // console.log({percentOfDV});
@@ -44,9 +39,6 @@ async function sortNutrientsButton (req, res, next) {
     let sortOrder = req.body.direction;
     let pathName = req.body.pathName;
 
-    // console.log('in sortNutrientsButton, req.body.mealId: ', req.body.mealId)
-
-    // console.log({pathName});
     const meal = await db_getMealObject(req.body.mealId);
 
     let direction
@@ -68,16 +60,18 @@ async function sortNutrientsButton (req, res, next) {
     // for sort with showFood ****
     let food
     if (pathName == 'meals/showFood') {
-        // let foodId = req.body.foodId;
-        food = meal.foods.find(foodObj => foodObj.id === req.body.foodId);
-        // console.log('foodId: ', food.id);
+
+        food = await meal.foods.find(foodObj => foodObj.id === req.body.foodId);
 
         addDailyValuePercentToFoodObj(food, dailyValues);
         food.foodNutrients = await nutrientSort(food.foodNutrients, sortBy, direction)
-        // console.log('foodNutrient[1] percentOfDV: ', food.foodNutrients[1].percentOfDV);
+     
+        addNutrientCategoriesToNutrientsObj(food.foodNutrients);
     }
     // for sort with showFood ***
     direction = sortOrder;
+
+    console.log({pathName});
 
     // res.render('meals/show', { meal: meal, direction: direction })
     res.render(`${pathName}`, { meal: meal, direction: direction, food: food })

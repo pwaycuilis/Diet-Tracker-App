@@ -62,13 +62,98 @@
                 </form>
             </div>
         </div>
-        <% food.foodNutrients.forEach(nutrient => { %>
-            <div class="nutrient-total-row flex-container">
-                <div><%= nutrient.name %></div>
-                <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
-                <div><%= nutrient.percentOfDV %></div>
-            </div>
-        <% }) %>
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">General</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "General") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Carbohydrates</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Carbohydrates") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Sugars</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Sugars") { %>
+                <div class="nutrient-card sugars-row">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Lipids</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Lipids") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+        
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Proteins</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Proteins") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Vitamins</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Vitamins") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+        <div class="nutrient-category">
+            <div class="nutrient-category__title">Minerals</div>
+            <% food.foodNutrients.forEach(nutrient => { %>
+                <% if (nutrient.nutrientCategory == "Minerals") { %>
+                <div class="nutrient-card">
+                    <div><%= nutrient.name %></div>
+                    <div><%= nutrient.amount %> <%= nutrient.unitName %></div>
+                    <div><%= nutrient.percentOfDV %></div>
+                </div>
+                <% } %>
+            <% }) %>
+        </div>
+
+
     </main>
 </body>
 </html>

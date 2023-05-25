@@ -4,7 +4,7 @@ const Food = require('../models/food')
 // const { createFoodObject } = require('../controllers/foodController');
 const { createDbFoodObject, db_deleteMealObject } = require('../middleware/manageDatabase');
 const { processNutrients } = require('../controllers/nutrientController');
-const { getDailyValues, addNutrientCategoriesToNutrientsObj, addDailyValuePercentToMealObj } = require('../middleware/helpers');
+const { getDailyValues, addNutrientCategoriesToNutrientsObj, addDailyValuePercentToMealObj, addDailyValuePercentToFoodObj } = require('../middleware/helpers');
 
 
 async function getMealObject (mealId) {
@@ -213,7 +213,10 @@ async function showMealFood (req, res, next) {
 
     let meal = await Meal.findById(req.params.mealId)
     let food = meal.foods.find(foodObj => foodObj.id === req.params.foodId)
-
+    
+    let dailyValues = getDailyValues();
+    addDailyValuePercentToFoodObj(food, dailyValues);
+    addNutrientCategoriesToNutrientsObj(food.foodNutrients);
 
     let direction = "";
     res.render('meals/showFood', { food: food, meal: meal, direction: direction})

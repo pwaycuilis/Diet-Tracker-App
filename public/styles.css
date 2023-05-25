@@ -112,6 +112,7 @@ header {
 .home > a {
   text-decoration: none;
 }
+
 .active {
   cursor: pointer;
 }
@@ -272,6 +273,10 @@ button:active {
 
 .food-info__fdcId {
   width: 15%;
+}
+
+.food-info__buttons > button > a {
+  text-decoration: none;
 }
 
 
